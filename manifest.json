@@ -1,0 +1,81 @@
+{
+  "name": "cortex-plugin-compliance",
+  "version": "1.0.0",
+  "description": "Policy rule packs for SOC 2, HIPAA, GDPR, PCI-DSS compliance auditing",
+  "kind": "esm",
+  "entryPoint": "mod.ts",
+  "runtime": "deno",
+  "author": "CortexPrism",
+  "license": "MIT",
+  "repository": "https://github.com/CortexPrism/cortex-plugin-compliance",
+  "homepage": "https://github.com/CortexPrism/cortex-plugin-compliance",
+  "capabilities": [
+    "tools",
+    "fs:read"
+  ],
+  "tools": [
+    {
+      "name": "compliance_audit",
+      "description": "Run a compliance audit against a target path using a specified framework",
+      "params": [
+        { "name": "framework", "type": "string", "description": "Compliance framework", "required": true, "enum": ["soc2", "hipaa", "gdpr", "pci_dss"] },
+        { "name": "target_path", "type": "string", "description": "Path to the target file or directory to audit", "required": true },
+        { "name": "output_format", "type": "string", "description": "Output format for the audit results", "required": false, "default": "markdown", "enum": ["json", "markdown", "html"] }
+      ]
+    },
+    {
+      "name": "compliance_generate_report",
+      "description": "Generate a compliance report from audit findings",
+      "params": [
+        { "name": "findings", "type": "string", "description": "JSON array of findings from a previous audit", "required": true },
+        { "name": "framework", "type": "string", "description": "Compliance framework name", "required": true },
+        { "name": "include_remediation", "type": "boolean", "description": "Include remediation guidance in the report", "required": false, "default": true }
+      ]
+    },
+    {
+      "name": "compliance_list_rules",
+      "description": "List rules for a specific compliance framework",
+      "params": [
+        { "name": "framework", "type": "string", "description": "Compliance framework", "required": true },
+        { "name": "category", "type": "string", "description": "Optional category filter", "required": false }
+      ]
+    },
+    {
+      "name": "compliance_check_policy",
+      "description": "Check a target path against a specific compliance rule",
+      "params": [
+        { "name": "framework", "type": "string", "description": "Compliance framework", "required": true },
+        { "name": "rule_id", "type": "string", "description": "Rule identifier to check", "required": true },
+        { "name": "target_path", "type": "string", "description": "Path to the target file or directory", "required": true }
+      ]
+    },
+    {
+      "name": "compliance_evidence",
+      "description": "Collect evidence for a specific compliance control",
+      "params": [
+        { "name": "framework", "type": "string", "description": "Compliance framework", "required": true },
+        { "name": "control_id", "type": "string", "description": "Control identifier", "required": true },
+        { "name": "evidence_paths", "type": "string", "description": "Comma-separated paths to evidence files", "required": false }
+      ]
+    }
+  ],
+  "dependencies": {},
+  "peerDependencies": {
+    "cortex": ">=1.0.0"
+  },
+  "aiDisclosure": {
+    "tools": ["Claude Code (Anthropic)"],
+    "humanReview": true
+  },
+  "ui": {
+    "section": "General",
+    "fields": [
+      { "key": "defaultFramework", "label": "Default Framework", "type": "select", "description": "Default compliance framework to use", "defaultValue": "soc2", "options": [
+        { "label": "SOC 2", "value": "soc2" },
+        { "label": "HIPAA", "value": "hipaa" },
+        { "label": "GDPR", "value": "gdpr" },
+        { "label": "PCI-DSS", "value": "pci_dss" }
+      ]}
+    ]
+  }
+}
