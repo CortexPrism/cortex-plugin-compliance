@@ -1,6 +1,6 @@
 {
   "name": "cortex-plugin-compliance",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Policy rule packs for SOC 2, HIPAA, GDPR, PCI-DSS compliance auditing",
   "kind": "esm",
   "entryPoint": "mod.ts",
@@ -23,7 +23,12 @@
           "type": "string",
           "description": "Compliance framework",
           "required": true,
-          "enum": ["soc2", "hipaa", "gdpr", "pci_dss"]
+          "enum": [
+            "soc2",
+            "hipaa",
+            "gdpr",
+            "pci_dss"
+          ]
         },
         {
           "name": "target_path",
@@ -37,7 +42,11 @@
           "description": "Output format for the audit results",
           "required": false,
           "default": "markdown",
-          "enum": ["json", "markdown", "html"]
+          "enum": [
+            "json",
+            "markdown",
+            "html"
+          ]
         }
       ]
     },
@@ -138,23 +147,41 @@
     "cortex": ">=1.0.0"
   },
   "aiDisclosure": {
-    "tools": ["Claude Code (Anthropic)"],
+    "tools": [
+      "Claude Code (Anthropic)"
+    ],
     "humanReview": true
   },
   "ui": {
-    "section": "General",
-    "fields": [
+    "settings": [
       {
-        "key": "defaultFramework",
-        "label": "Default Framework",
-        "type": "select",
-        "description": "Default compliance framework to use",
-        "defaultValue": "soc2",
-        "options": [
-          { "label": "SOC 2", "value": "soc2" },
-          { "label": "HIPAA", "value": "hipaa" },
-          { "label": "GDPR", "value": "gdpr" },
-          { "label": "PCI-DSS", "value": "pci_dss" }
+        "section": "General",
+        "fields": [
+          {
+            "key": "defaultFramework",
+            "label": "Default Framework",
+            "type": "select",
+            "description": "Default compliance framework to use",
+            "default": "soc2",
+            "enum": [
+              {
+                "label": "SOC 2",
+                "value": "soc2"
+              },
+              {
+                "label": "HIPAA",
+                "value": "hipaa"
+              },
+              {
+                "label": "GDPR",
+                "value": "gdpr"
+              },
+              {
+                "label": "PCI-DSS",
+                "value": "pci_dss"
+              }
+            ]
+          }
         ]
       }
     ]

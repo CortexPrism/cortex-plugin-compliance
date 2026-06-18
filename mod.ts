@@ -9,11 +9,11 @@ export async function onLoad(ctx: PluginContext): Promise<void> {
   } else {
     defaultFramework = 'soc2';
   }
-  console.log(`[cortex-plugin-compliance] Loaded with default framework: ${defaultFramework}`);
+  ctx.logger.info(`[cortex-plugin-compliance] Loaded with default framework: ${defaultFramework}`);
 }
 
-export async function onUnload(_ctx: PluginContext): Promise<void> {
-  console.log('[cortex-plugin-compliance] Unloading...');
+export async function onUnload(ctx: PluginContext): Promise<void> {
+  ctx.logger.info('[cortex-plugin-compliance] Unloading...');
 }
 
 interface ComplianceRule {
