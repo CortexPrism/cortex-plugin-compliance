@@ -1,6 +1,6 @@
 {
   "name": "cortex-plugin-compliance",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Policy rule packs for SOC 2, HIPAA, GDPR, PCI-DSS compliance auditing",
   "kind": "esm",
   "entryPoint": "mod.ts",
@@ -41,7 +41,7 @@
           "type": "string",
           "description": "Output format for the audit results",
           "required": false,
-          "default": "markdown",
+          "defaultValue": "markdown",
           "enum": [
             "json",
             "markdown",
@@ -71,7 +71,7 @@
           "type": "boolean",
           "description": "Include remediation guidance in the report",
           "required": false,
-          "default": true
+          "defaultValue": true
         }
       ]
     },
@@ -144,7 +144,7 @@
   ],
   "dependencies": {},
   "peerDependencies": {
-    "cortex": ">=1.0.0"
+    "cortex": ">=0.51.0"
   },
   "aiDisclosure": {
     "tools": [
@@ -162,8 +162,8 @@
             "label": "Default Framework",
             "type": "select",
             "description": "Default compliance framework to use",
-            "default": "soc2",
-            "enum": [
+            "defaultValue": "soc2",
+            "options": [
               {
                 "label": "SOC 2",
                 "value": "soc2"
